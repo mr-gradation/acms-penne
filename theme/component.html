@@ -1,0 +1,150 @@
+  <tr>
+    <th>
+      \{penne_field_title\}
+      <!-- BEGIN_IF [\{penne_field_tooltip\}/nem] -->
+      <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="\{penne_field_tooltip\}"></i>
+      <!-- END_IF -->
+    </th>
+    <td>
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/text] -->
+      <input type="text" name="\{penne_field_varname\}" value="\{penne_field_data\}" class="acms-admin-form-width-full" />
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <!-- END_IF -->
+
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/textarea] -->
+      <textarea name="\{penne_field_varname\}" class="acms-admin-form-width-full">\{penne_field_data\}</textarea>
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <!-- END_IF -->
+      
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/lite-editor] -->
+      <textarea name="\{penne_field_varname\}" class="js-lite-editor-field acms-admin-form-width-full">\{penne_field_data\}</textarea>
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <!-- END_IF -->
+
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/rich-editor] -->
+      <div class="js-expand js-acms-expand">
+        <div class="js-acms-expand-inner">
+          <button class="js-expand-btn js-acms-expand-btn" type="button">
+            <i class="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon"></i>
+          </button>
+          <div class="js-smartblock" data-heading-start="2" data-heading-end="3">
+            <div class="js-smartblock-edit"></div>
+            <input type="hidden" class="js-smartblock-body" name="\{penne_field_varname\}" value="\{penne_field_data@html\}" />
+            <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+            <input type="hidden" name="\{penne_field_varname\}:extension" value="rich-editor" />
+          </div>
+        </div>
+      </div>
+      <!-- END_IF -->
+      
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/table] -->
+      <div class="js-editable-table-field">
+        <div class="js-editable-table">
+          <!-- BEGIN_IF [\{penne_field_data\}[delnl]/nem] -->
+          \{penne_field_data\}[raw]
+          <!-- ELSE -->
+          <table>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <!-- END_IF -->
+          <input type="hidden" class="js-editable-table-dest" value="\{penne_field_data\}" name="\{penne_field_varname\}" />
+          <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+        </div>
+      </div>
+      <!-- END_IF -->
+      
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/select] -->
+      <select name="\{penne_field_varname\}" class="acms-admin-form-width-full">
+        <option value=""></option>
+        <!-- BEGIN\ penne_field_value:loop -->
+        <option value="\{penne_field_value\}" \{selected\}>\{penne_field_value\}</option>
+        <!-- END\ penne_field_value:loop -->
+      </select>
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <!-- END_IF -->
+
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/checkbox] -->
+      <div class="acms-admin-form-checkbox">
+        <!-- BEGIN\ penne_field_value:loop -->
+        <input type="checkbox" name="\{penne_field_varname\}[]" value="\{penne_field_value\}" \{checked\} id="input-checkbox-\{penne_field_varname\}-\{penne_field_value\}" />
+        <label for="input-checkbox-\{penne_field_varname\}-\{penne_field_value\}">
+          <i class="acms-admin-ico-checkbox"></i>\{penne_field_value\}
+        </label>
+        <!-- END\ penne_field_value:loop -->
+      </div>
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <!-- END_IF -->
+
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/radio] -->
+      <div class="acms-admin-form-radio">
+        <!-- BEGIN\ penne_field_value:loop -->
+        <input type="radio" name="\{penne_field_varname\}" value="\{penne_field_value\}" \{checked\} id="input-radio-\{penne_field_varname\}-\{penne_field_value\}" />
+        <label for="input-radio-\{penne_field_varname\}-\{penne_field_value\}">
+          <i class="acms-admin-ico-radio"></i>\{penne_field_value\}
+        </label>
+        <!-- END\ penne_field_value:loop -->
+      </div>
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <!-- END_IF -->
+
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/media] -->
+      <div class="js-media-field">
+        <div class="js-droparea" data-thumbnail="\{penne_field_data@path\}" data-type="image" data-thumbnail-type="\{penne_field_data@type\}" data-width="200px" data-height="200px"></div>
+        <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+        <div class="acms-admin-margin-top-mini">
+          <button type="button" class="js-insert acms-admin-btn" data-type="image">メディアを選択</button>
+        </div>
+        <input type="hidden" name="\{penne_field_varname\}" value="\{penne_field_data\}" class="js-value" />
+        <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+        <input type="hidden" name="\{penne_field_varname\}:extension" value="media" />
+      </div>
+      <!-- END_IF -->
+      
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/image] -->
+      <div class="js-img_resize_cf">
+        <!-- BEGIN_IF [\{penne_field_data@path\}[delnl]/nem] -->
+        <img src="%{ARCHIVES_DIR}\{penne_field_data@path\}" class="acms-admin-img-responsive js-img_resize_preview" alt="\{penne_field_data@alt\}" />
+        <input type="hidden" name="\{penne_field_varname\}@old" value="\{penne_field_data@path\}" />
+        <div class="acms-admin-form-checkbox">
+          <input type="checkbox" name="\{penne_field_varname\}@edit" value="delete" id="input-checkbox-\{penne_field_varname\}@edit" />
+          <label for="input-checkbox-\{penne_field_varname\}@edit">
+            <i class="acms-admin-ico-checkbox"></i>削除</label>
+        </div>
+        <!-- ELSE -->
+        <img src="%{ARCHIVES_DIR}\{penne_field_data@path\}" class="acms-admin-img-responsive js-img_resize_preview" style="display:none" />
+        <!-- END_IF -->
+        <input type="file" name="\{penne_field_varname\}" size="20" class="js-img_resize_input" />
+        <br/>
+        <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+        <input type="hidden" name="\{penne_field_varname\}:extension" value="image" />
+        <input type="hidden" name="\{penne_field_varname\}@filename" value="" />
+      </div>  
+      <!-- END_IF -->
+
+      <!-- BEGIN_IF [\{penne_field_element\}/eq/file] -->
+      <!-- BEGIN_IF [\{penne_field_data@path\}[delnl]/nem] -->
+      <input type="hidden" name="\{penne_field_varname\}@old" value="\{penne_field_data@path\}}" />
+      <input type="hidden" name="\{penne_field_varname\}@secret" value="\{penne_field_data@secret\}" />
+      <input type="hidden" name="\{penne_field_varname\}@fileSize" value="\{penne_field_data@fileSize\}" />
+      <label for="input-checkbox-\{penne_field_varname\}@edit" class="acms-admin-form-checkbox">
+        <input type="checkbox" name="\{penne_field_varname\}@edit" value="delete" id="input-checkbox-\{penne_field_varname\}@edit" />
+        <i class="acms-admin-ico-checkbox"></i>削除</label>
+      <a href="%{ARCHIVES_DIR}\{penne_field_data@path\}">
+        <img src="/images/fileicon/file.svg" width="64" height="64" alt="file" />
+      </a>
+      <!-- END_IF -->
+      <!-- END\ penne_field_varname@path:veil -->
+      <input type="file" name="\{penne_field_varname\}" />
+      <input type="hidden" name="field[]" value="\{penne_field_varname\}" />
+      <input type="hidden" name="\{penne_field_varname\}@baseName" value="\{penne_field_data@baseName\}" />
+      <input type="hidden" name="\{penne_field_varname\}:extension" value="file" />
+      <!-- END_IF -->
+    </td>
+  </tr>

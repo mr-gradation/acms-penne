@@ -1,0 +1,5 @@
+%{PREFIX}penne_group:
+  - PRIMARY KEY (penne_group_id)
+
+%{PREFIX}penne_field:
+  - PRIMARY KEY (penne_field_id)

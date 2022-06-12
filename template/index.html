@@ -1,0 +1,60 @@
+<header>
+  @include("/admin/topicpath.html")
+  <h1 class="acms-admin-admin-title js-dialog-title">
+    カスタムフィールド一覧
+  </h1>
+</header>
+
+<form action="" method="post" enctype="multipart/form-data" class="acms-admin-form">
+  <div class="acms-admin-form-group acms-admin-margin-bottom-small">
+    <div class="js-fake-form acms-admin-float-right" data-method="post">
+      <input type="hidden" name="ACMS_POST_2GET" value="on">
+      <input type="hidden" name="admin" value="app_penne_editor">
+      <input type="hidden" name="bid" value="%{BID}"/>
+      <input type="hidden" name="edit" value="insert"/>
+      <input type="hidden" name="query[]" value="edit"/>
+      <button class="js-submit acms-admin-btn acms-admin-btn-success" style="vertical-align: top;"><!--T-->新規作成<!--/T--></button>
+      <input type="hidden" name="formToken" value="on" />
+    </div>
+  </div>
+
+  <!-- BEGIN_MODULE PenneAdminList -->
+  <div class="acms-admin-table-responsive">
+    <table class="acms-admin-table-admin acms-admin-table-hover">
+      <thead class="acms-admin-table-heading">
+        <tr>
+          <!-- <th class="acms-admin-table-center acms-admin-th-checkbox acms-admin-table-cell-sm acms-admin-table-nowrap">
+						<div class="acms-admin-form-checkbox acms-admin-margin-none">
+							<input type="checkbox" id="checkAll">
+							<label for="checkAll"><i class="acms-admin-ico-checkbox"></i><span class="acms-admin-hide-visually">すべてのエントリーを選択する</span></label>
+						</div>
+					</th> -->
+          <th class="acms-admin-table-nowrap">ステータス</th>
+          <th>タイトル</th>
+          <th>説明文</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- BEGIN group:loop -->
+        <tr>
+          <!-- <td class="acms-admin-table-center acms-admin-td-checkbox acms-admin-table-nowrap">
+            <div class="acms-admin-form-checkbox acms-admin-margin-none">
+              <input type="checkbox" id="input-checkbox-{penne_group_id}" name="checks[]" value="{penne_group_id}">
+              <label for="input-checkbox-{penne_group_id}"><i class="acms-admin-ico-checkbox"></i></label>
+            </div>
+          </td> -->
+          <td class="acms-admin-text-center">
+            <!-- BEGIN penne_group_status#open --><span class="acms-admin-label acms-admin-label-info admin-status-label acms-admin-text-nowrap"><!--T-->有効<!--/T--></span><!-- END penne_group_status#open -->
+            <!-- BEGIN penne_group_status#close --><span class="acms-admin-label acms-admin-label-danger admin-status-label"><!--T-->無効<!--/T--></span><!-- END penne_group_status#close -->
+					</td>
+          <td><a href="{itemUrl}&edit=update">{penne_group_title}</a></td>
+          <td>{penne_group_description}</td>
+          <td class="acms-admin-td-edit acms-admin-table-nowrap"><a href="{itemUrl}&edit=update" class="acms-admin-btn acms-admin-btn-primary"><!--T-->編集<!--/T--></a></td>
+        </tr>
+        <!-- END group:loop -->
+      </tbody>
+    </table>
+  </div>
+  <!-- END_MODULE PenneAdminList -->
+</form>

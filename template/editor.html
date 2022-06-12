@@ -1,0 +1,395 @@
+<header>
+  @include("/admin/topicpath.html")
+  <h1 class="acms-admin-admin-title js-dialog-title">
+    カスタムフィールド作成
+  </h1>
+</header>
+
+<!-- BEGIN_MODULE Admin_Messages -->
+<!-- BEGIN message:loop -->
+<p class="acms-admin-alert acms-admin-alert-icon acms-admin-alert-info">
+  <span class="acms-admin-icon acms-admin-icon-news acms-admin-alert-icon-before" aria-hidden="true"></span>
+  <button class="js-acms-alert-close acms-admin-alert-icon-after">×</button>
+  {message}[raw]
+</p>
+<!-- END message:loop -->
+<!-- END_MODULE Admin_Messages -->
+
+<!-- BEGIN_MODULE PenneAdminEntry -->
+<form action="" method="post" enctype="multipart/form-data" class="acms-admin-form">
+  <div class="js-acms_fix_marker acms_fix_bg">
+		<div class="acms-admin-form-group acms_fix_bg_index">
+			<a href="{indexUrl}" class="acms-admin-btn-admin"><!--T-->一覧<!--/T--></a>
+      <input type="hidden" name="bid" value="%{BID}" />
+      <input type="hidden" name="admin" value="app_penne_index" />
+      <input type="hidden" name="id" value="{group_id}" />
+      <!-- BEGIN submit#insert -->
+			<input type="submit" name="ACMS_POST_PenneAdminInsert" value="<!--T-->作成<!--/T-->" class="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save js-saving-splash" />
+      <!-- END submit#insert -->
+      <!-- BEGIN submit#update -->
+			<input type="submit" name="ACMS_POST_PenneAdminUpdate" value="<!--T-->保存<!--/T-->" class="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save js-saving-splash" />
+      <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+      <input type="submit" name="ACMS_POST_PenneAdminDelete" value="<!--T-->削除<!--/T-->" onclick="return confirm('<!--T-->この操作は取り消せません。\nよろしいですか？<!--/T-->');" class="acms-admin-btn-admin acms-admin-btn-admin-danger js-hide-on-modal" />
+      <!-- END_MODULE Touch_SessionWithAdministration -->
+      <!-- END submit#update -->
+		</div>
+	</div>
+  <h3 class="acms-admin-admin-title2">基本設定</h3>
+  <table class="acms-admin-table-admin-edit js-acms-tab-select">
+    <tr>
+      <th>ステータス</th>
+      <td>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_status" value="open" {penne_group_status:checked#open} <!-- BEGIN_IF [{penne_group_status}/em/] -->checked<!-- END_IF --> id="input-radio-penne_group_status-open" />
+          <label for="input-radio-penne_group_status-open">
+            <i class="acms-admin-ico-radio"></i>有効</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_status" value="close" {penne_group_status:checked#close} id="input-radio-penne_group_status-close" />
+          <label for="input-radio-penne_group_status-close">
+            <i class="acms-admin-ico-radio"></i>無効</label>
+        </div>
+        <input type="hidden" name="field[]" value="penne_group_status" />
+      </td>
+    </tr>
+    <tr>
+      <th>タイトル</th>
+      <td>
+        <input type="text" name="penne_group_title" value="{penne_group_title}" class="acms-admin-form-width-full" />
+        <input type="hidden" name="field[]" value="penne_group_title" />
+      </td>
+    </tr>  
+    <tr>
+      <th>説明文</th>
+      <td>
+        <textarea name="penne_group_description" class="acms-admin-form-width-full">{penne_group_description}</textarea>
+        <input type="hidden" name="field[]" value="penne_group_description" />
+      </td>
+    </tr>
+    <tr>
+      <th>場所</th>
+      <td>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_location" value="blog" {penne_group_location:checked#blog} id="input-radio-penne_group_location-blog" class="js-acms-tab-select-value" />
+          <label for="input-radio-penne_group_location-blog">
+            <i class="acms-admin-ico-radio"></i>ブログ</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_location" value="category" {penne_group_location:checked#category} id="input-radio-penne_group_location-category" class="js-acms-tab-select-value" />
+          <label for="input-radio-penne_group_location-category">
+            <i class="acms-admin-ico-radio"></i>カテゴリー</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_location" value="entry" {penne_group_location:checked#entry} id="input-radio-penne_group_location-entry" class="js-acms-tab-select-value" />
+          <label for="input-radio-penne_group_location-entry">
+            <i class="acms-admin-ico-radio"></i>エントリー</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_location" value="module" {penne_group_location:checked#module} id="input-radio-penne_group_location-module" class="js-acms-tab-select-value" />
+          <label for="input-radio-penne_group_location-module">
+            <i class="acms-admin-ico-radio"></i>モジュール</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="penne_group_location" value="user" {penne_group_location:checked#user} id="input-radio-penne_group_location-user" class="js-acms-tab-select-value" />
+          <label for="input-radio-penne_group_location-user">
+            <i class="acms-admin-ico-radio"></i>ユーザー</label>
+        </div>
+        <input type="hidden" name="field[]" value="penne_group_location" />
+      </td>
+    </tr>
+    <tr>
+      <th>条件<i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="表示する条件を<a href='https://developer.a-blogcms.jp/document/template/if.html' target='_blank'>IFブロックによる条件</a>で指定します。"></i></th>
+      <td>
+        <input type="text" name="penne_group_condition" value="{penne_group_condition}" class="acms-admin-form-width-full" />
+        <input type="hidden" name="field[]" value="penne_group_condition" />
+        
+        <div id="blog" class="acms-admin-margin-top-small js-acms-tab-select-panel <!-- BEGIN_IF [{penne_group_location}/eq/blog] --> js-acms-tab-select-active<!-- END_IF -->">
+          <select name="bid" class="js-select2" data-condition-location="%\{BID\}">
+            <option value="">ブログを選択</option>
+            <!-- BEGIN_MODULE Admin_Blog_SelectGlobal -->
+            <!-- BEGIN loop -->
+            <option value="{value}"}>{indent}[raw]{label}</option>
+            <!-- END loop -->
+            <!-- END_MODULE Admin_Blog_SelectGlobal -->
+          </select>
+          @include("opr.html")
+          <button type="button" class="acms-admin-btn-admin js-condition-apply">適用</button>
+        </div>
+
+        <div id="category" class="acms-admin-margin-top-small js-acms-tab-select-panel <!-- BEGIN_IF [{penne_group_location}/eq/category] --> js-acms-tab-select-active<!-- END_IF -->">          
+          <select name="cid" class="js-select2" data-condition-location="%\{CID\}">
+            <option value=""><!--T-->カテゴリーを選択<!--/T--></option>
+            <!-- BEGIN_MODULE Admin_Category_Select -->
+            <!-- BEGIN loop -->
+            <option value="{value}"\{parent:selected#{value}\}>{indent}[raw]{label}</option>
+            <!-- END loop -->
+            <!-- END_MODULE Admin_Category_Select -->
+          </select>
+          @include("opr.html")
+          <button type="button" class="acms-admin-btn-admin js-condition-apply"><!--T-->適用<!--/T--></button>
+        </div>
+
+        <div id="entry" class="acms-admin-margin-top-small js-acms-tab-select-panel <!-- BEGIN_IF [{penne_group_location}/eq/entry] --> js-acms-tab-select-active<!-- END_IF -->">          
+          <input type="text" value="" placeholder="エントリーID" class="acms-admin-form-width-quoter" data-condition-location="%\{EID\}">
+          @include("opr.html")
+          <button type="button" class="acms-admin-btn-admin js-condition-apply"><!--T-->適用<!--/T--></button>
+        </div>
+
+        <div id="module" class="acms-admin-margin-top-small js-acms-tab-select-panel <!-- BEGIN_IF [{penne_group_location}/eq/module] --> js-acms-tab-select-active<!-- END_IF -->">          
+          <input type="text" value="" placeholder="モジュールID" class="acms-admin-form-width-quoter" data-condition-location="%\{MODULE_ID\}">
+          @include("opr.html")
+          <button type="button" class="acms-admin-btn-admin js-condition-apply"><!--T-->適用<!--/T--></button>
+        </div>
+        
+        <div id="user" class="acms-admin-margin-top-small js-acms-tab-select-panel <!-- BEGIN_IF [{penne_group_location}/eq/user] --> js-acms-tab-select-active<!-- END_IF -->">          
+          <select name="uid" class="js-select2" data-condition-location="%\{UID\}">
+            <option value=""><!--T-->ユーザーを選択<!--/T--></option>
+            <!-- BEGIN_MODULE Admin_User_SelectGlobal -->
+            <!-- BEGIN loop -->
+            <option value="{value}">{label}</option>
+            <!-- END loop -->
+            <!-- END_MODULE Admin_User_SelectGlobal -->
+          </select>
+          @include("opr.html")
+          <button type="button" class="acms-admin-btn-admin js-condition-apply"><!--T-->適用<!--/T--></button>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <h3 class="acms-admin-admin-title2">フィールド設定</h3>
+  <table class="js-fieldgroup-sortable adminTable acms-admin-table-admin-edit">
+    <tbody>
+      <!-- BEGIN penne_field:loop -->
+      <tr class="sortable-item">
+        <td class="item-handle acms-admin-table-nowrap">
+          <i class="acms-admin-icon-sort"></i>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <th>要素</th>
+              <td>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="text" {penne_field_element:checked#text} id="input-radio-penne_field_element-text" />
+                  <label for="input-radio-penne_field_element-text">
+                    <i class="acms-admin-ico-radio"></i>テキスト</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="textarea" {penne_field_element:checked#textarea} id="input-radio-penne_field_element-textarea" />
+                  <label for="input-radio-penne_field_element-textarea">
+                    <i class="acms-admin-ico-radio"></i>テキストエリア</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="lite-editor" {penne_field_element:checked#lite-editor} id="input-radio-penne_field_element-lite-editor" />
+                  <label for="input-radio-penne_field_element-lite-editor">
+                    <i class="acms-admin-ico-radio"></i>インラインエディター</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="rich-editor" {penne_field_element:checked#rich-editor} id="input-radio-penne_field_element-rich-editor" />
+                  <label for="input-radio-penne_field_element-rich-editor">
+                    <i class="acms-admin-ico-radio"></i>リッチエディター</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="table" {penne_field_element:checked#table} id="input-radio-penne_field_element-table" />
+                  <label for="input-radio-penne_field_element-table">
+                    <i class="acms-admin-ico-radio"></i>テーブル</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="select" {penne_field_element:checked#select} id="input-radio-penne_field_element-select" />
+                  <label for="input-radio-penne_field_element-select">
+                    <i class="acms-admin-ico-radio"></i>セレクトボックス</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="checkbox" {penne_field_element:checked#checkbox} id="input-radio-penne_field_element-checkbox" />
+                  <label for="input-radio-penne_field_element-checkbox">
+                    <i class="acms-admin-ico-radio"></i>チェックボックス</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="radio" {penne_field_element:checked#radio} id="input-radio-penne_field_element-radio" />
+                  <label for="input-radio-penne_field_element-radio">
+                    <i class="acms-admin-ico-radio"></i>ラジオボタン</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="media" {penne_field_element:checked#media} id="input-radio-penne_field_element-media" />
+                  <label for="input-radio-penne_field_element-media">
+                    <i class="acms-admin-ico-radio"></i>メディア</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="image" {penne_field_element:checked#image} id="input-radio-penne_field_element-image" />
+                  <label for="input-radio-penne_field_element-image">
+                    <i class="acms-admin-ico-radio"></i>画像</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="file" {penne_field_element:checked#file} id="input-radio-penne_field_element-file" />
+                  <label for="input-radio-penne_field_element-file">
+                    <i class="acms-admin-ico-radio"></i>ファイル</label>
+                </div>
+                <input type="hidden" name="penne_field_type[]" value="{penne_field_type}" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>変数名</th>
+              <td>
+                <input type="text" name="penne_field_varname[]" value="{penne_field_varname}" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>タイトル</th>
+              <td>
+                <input type="text" name="penne_field_title[]" value="{penne_field_title}" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>ツールチップ</th>
+              <td>
+                <input type="text" name="penne_field_tooltip[]" value="{penne_field_tooltip}" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>値</th>
+              <td>
+                <input type="text" name="penne_field_value[]" value="{penne_field_value}" placeholder="セレクトボックス、チェックボックス、ラジオボタンの場合、カンマ区切りで選択肢を入力" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="acms-admin-table-nowrap">
+          <input type="button" class="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger" value="削除" />
+        </td>
+      </tr>
+      <!-- END penne_field:loop -->
+      <tr class="sortable-item item-template">
+        <td class="item-handle acms-admin-table-nowrap">
+          <i class="acms-admin-icon-sort"></i>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <th>要素</th>
+              <td>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="text" {penne_field_element:checked#text} id="input-radio-penne_field_element-text" />
+                  <label for="input-radio-penne_field_element-text">
+                    <i class="acms-admin-ico-radio"></i>テキスト</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="textarea" {penne_field_element:checked#textarea} id="input-radio-penne_field_element-textarea" />
+                  <label for="input-radio-penne_field_element-textarea">
+                    <i class="acms-admin-ico-radio"></i>テキストエリア</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="lite-editor" {penne_field_element:checked#lite-editor} id="input-radio-penne_field_element-lite-editor" />
+                  <label for="input-radio-penne_field_element-lite-editor">
+                    <i class="acms-admin-ico-radio"></i>インラインエディター</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="rich-editor" {penne_field_element:checked#rich-editor} id="input-radio-penne_field_element-rich-editor" />
+                  <label for="input-radio-penne_field_element-rich-editor">
+                    <i class="acms-admin-ico-radio"></i>リッチエディター</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="table" {penne_field_element:checked#table} id="input-radio-penne_field_element-table" />
+                  <label for="input-radio-penne_field_element-table">
+                    <i class="acms-admin-ico-radio"></i>テーブル</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="select" {penne_field_element:checked#select} id="input-radio-penne_field_element-select" />
+                  <label for="input-radio-penne_field_element-select">
+                    <i class="acms-admin-ico-radio"></i>セレクトボックス</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="checkbox" {penne_field_element:checked#checkbox} id="input-radio-penne_field_element-checkbox" />
+                  <label for="input-radio-penne_field_element-checkbox">
+                    <i class="acms-admin-ico-radio"></i>チェックボックス</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="radio" {penne_field_element:checked#radio} id="input-radio-penne_field_element-radio" />
+                  <label for="input-radio-penne_field_element-radio">
+                    <i class="acms-admin-ico-radio"></i>ラジオボタン</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="media" {penne_field_element:checked#media} id="input-radio-penne_field_element-media" />
+                  <label for="input-radio-penne_field_element-media">
+                    <i class="acms-admin-ico-radio"></i>メディア</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="image" {penne_field_element:checked#image} id="input-radio-penne_field_element-image" />
+                  <label for="input-radio-penne_field_element-image">
+                    <i class="acms-admin-ico-radio"></i>画像</label>
+                </div>
+                <div class="acms-admin-form-radio">
+                  <input type="radio" name="penne_field_element[]" value="file" {penne_field_element:checked#file} id="input-radio-penne_field_element-file" />
+                  <label for="input-radio-penne_field_element-file">
+                    <i class="acms-admin-ico-radio"></i>ファイル</label>
+                </div>
+                <input type="hidden" name="penne_field_type[]" value="{penne_field_type}" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>変数名</th>
+              <td>
+                <input type="text" name="penne_field_varname[]" value="" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>タイトル</th>
+              <td>
+                <input type="text" name="penne_field_title[]" value="" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>ツールチップ</th>
+              <td>
+                <input type="text" name="penne_field_tooltip[]" value="" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+            <tr>
+              <th>値</th>
+              <td>
+                <input type="text" name="penne_field_value[]" value="" placeholder="セレクトボックス、チェックボックス、ラジオボタンの場合、カンマ区切りで選択肢を入力" class="acms-admin-form-width-full" />
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="acms-admin-table-nowrap">
+          <input type="button" class="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger" value="削除" />
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colSpan="3">
+          <input type="button" class="item-insert acms-admin-btn-admin" value="追加" />
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <input type="hidden" name="@penne_field[]" value="penne_field_element" />
+  <input type="hidden" name="field[]" value="penne_field_element" />
+  <input type="hidden" name="@penne_field[]" value="penne_field_varname" />
+  <input type="hidden" name="field[]" value="penne_field_varname" />
+  <input type="hidden" name="@penne_field[]" value="penne_field_title" />
+  <input type="hidden" name="field[]" value="penne_field_title" />
+  <input type="hidden" name="@penne_field[]" value="penne_field_tooltip" />
+  <input type="hidden" name="field[]" value="penne_field_tooltip" />
+  <input type="hidden" name="@penne_field[]" value="penne_field_value" />
+  <input type="hidden" name="field[]" value="penne_field_value" />
+  <input type="hidden" name="field[]" value="@penne_field" />
+</form>
+<!-- END_MODULE PenneAdminEntry -->
+
+<script>
+  $('.js-condition-apply').on('click', function(){
+    var val = '';
+    var $target = $(this).parent();
+    var location = $target.find('[data-condition-location]').attr('data-condition-location');
+    var condition = $target.find('[data-condition-location]').val();
+    var opr = $target.find('[name="opr"]').val();
+    if (condition || opr != 'eq') {
+      val = location + '/' + opr + '/' + condition;
+    }
+    $('[name="penne_group_condition"]').val(val);
+    return false;
+  });
+</script>

@@ -1,0 +1,115 @@
+---
+%{PREFIX}penne_group:
+  penne_group_id:
+    Field: penne_group_id
+    Type: int(11)
+    'Null': NO
+    Key: UNI
+    Default:
+    Extra: 'AUTO_INCREMENT'
+  penne_group_sort:
+    Field: penne_group_sort
+    Type: int(11)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  penne_group_status:
+    Field: penne_group_status
+    Type: varchar(16)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  penne_group_title:
+    Field: penne_group_title
+    Type: varchar(255)
+    'Null': 
+    Key: 
+    Default:
+    Extra:
+  penne_group_description:
+    Field: penne_group_description
+    Type: varchar(255)
+    'Null': 
+    Key: 
+    Default:
+    Extra:
+  penne_group_location:
+    Field: penne_group_location
+    Type: varchar(255)
+    'Null': 
+    Key: 
+    Default:
+    Extra:
+  penne_group_condition:
+    Field: penne_group_condition
+    Type: varchar(255)
+    'Null': 
+    Key: 
+    Default:
+    Extra:
+  penne_group_blog_id:
+    Field: penne_group_blog_id
+    Type: int(11)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+%{PREFIX}penne_field:
+  penne_field_id:
+    Field: penne_field_id
+    Type: int(11)
+    'Null': NO
+    Key: UNI
+    Default:
+    Extra: 'AUTO_INCREMENT'
+  penne_field_sort:
+    Field: penne_field_sort
+    Type: int(11)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  penne_field_group_id:
+    Field: penne_field_group_id
+    Type: int(11)
+    'Null': 
+    Key:
+    Default:
+    Extra: 
+  penne_field_element:
+    Field: penne_field_element
+    Type: varchar(255)
+    'Null': 
+    Key:
+    Default:
+    Extra:
+  penne_field_varname:
+    Field: penne_field_varname
+    Type: varchar(255)
+    'Null': 
+    Key:
+    Default:
+    Extra:
+  penne_field_title:
+    Field: penne_field_title
+    Type: varchar(255)
+    'Null': 
+    Key:
+    Default:
+    Extra:
+  penne_field_tooltip:
+    Field: penne_field_tooltip
+    Type: varchar(255)
+    'Null': 
+    Key:
+    Default:
+    Extra:
+  penne_field_value:
+    Field: penne_field_value
+    Type: varchar(1024)
+    'Null': 
+    Key:
+    Default:
+    Extra:
